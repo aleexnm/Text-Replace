@@ -5,7 +5,7 @@ with open('AccountHistory.qbo', 'r') as file :
   filedata = file.read()
 
 # initializing substrings
-sub1 = "<FID>"
+sub1 = "<FID"
 sub2 = "</FID>"
 
 # getting index of substrings
@@ -27,13 +27,8 @@ reg = "(?<=%s).*?(?=%s)" % (str1,str2)
 r = re.compile(reg,re.DOTALL)
 result = r.sub(res, filedata)
 
-print(res)
-
+print(result)
 
 # Create file and write again
 #with open('newDoc.qbo', 'w') as file:
   #file.write(filedata)
-
-
-
-
