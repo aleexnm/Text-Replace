@@ -1,0 +1,39 @@
+import re
+
+# Read file
+with open('AccountHistory.qbo', 'r') as file :
+  filedata = file.read()
+
+# initializing substrings
+sub1 = "<FID>"
+sub2 = "</FID>"
+
+# getting index of substrings
+idx1 = filedata.index(sub1)
+idx2 = filedata.index(sub2)
+
+# create variable
+res = ''
+
+# getting elements in between
+for idx in range(idx1 + len(sub1) + 1, idx2):
+    res = res + filedata[idx]
+
+# Create strings to insert text in-between
+str1 = '<INTU.BID>'
+str2 = '</INTU.BID>'
+
+reg = "(?<=%s).*?(?=%s)" % (str1,str2)
+r = re.compile(reg,re.DOTALL)
+result = r.sub(res, filedata)
+
+print(res)
+
+
+# Create file and write again
+#with open('newDoc.qbo', 'w') as file:
+  #file.write(filedata)
+
+
+
+
